@@ -1,0 +1,367 @@
+.login-page-wrap {
+    min-height: calc(100vh - 68px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.login-container {
+    background: var(--bg-surface);
+    padding: 35px;
+    border-radius: 18px;
+    width: 380px;
+    max-width: 100%;
+    box-shadow: 0 20px 50px var(--shadow-md);
+    border-top: 6px solid var(--brand);
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--accent-text);
+    font-size: 26px;
+}
+
+.input-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: var(--teks-medium);
+    font-size: 14px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border-strong);
+    background: var(--bg-input);
+    font-size: 14px;
+    color: var(--teks);
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+input {
+    padding: 12px 14px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    background: var(--bg-surface);
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--shadow-md);
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--teks-medium);
+    opacity: 0.7;
+}
+
+.login-btn,
+.button-submit,
+.btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--brand);
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 10px 25px var(--shadow-lg);
+}
+
+.login-btn:hover,
+.button-submit:hover,
+.btn-submit:hover {
+    transform: translateY(-2px);
+    background: var(--brand-strong);
+}
+
+.text-center {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: var(--teks-medium);
+}
+
+.text-center a,
+.text-center a:visited,
+.text-center a:active {
+    color: var(--brand) !important;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.text-center a:hover {
+    color: var(--brand-strong) !important;
+    text-decoration: underline;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 650px;
+    background: var(--bg-surface);
+    padding: 35px;
+    border-radius: 18px;
+    border-top: 6px solid var(--brand);
+    box-shadow: 0 20px 50px var(--shadow-md);
+    animation: fadeIn 0.6s ease;
+    color: var(--teks);
+}
+
+h3 {
+    text-align: center;
+    color: var(--accent-text);
+    font-size: 26px;
+    margin-bottom: 25px;
+}
+
+h3::after {
+    content: "Pengaduan Sarana & Prasarana Sekolah";
+    display: block;
+    font-size: 13px;
+    color: var(--brand);
+    margin-top: 5px;
+    font-weight: normal;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.button-submit {
+    margin-top: 20px;
+}
+
+.center-form-layout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 160px);
+}
+
+.center-form-layout .card {
+    width: min(100%, 760px);
+    padding: 32px 36px;
+}
+
+.form-action-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-submit-compact {
+    flex: 1;
+    width: auto;
+    margin-top: 0;
+}
+
+.btn-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--border-strong);
+    background: var(--cancel-bg);
+    color: var(--accent-text);
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.btn-cancel:hover {
+    background: var(--cancel-bg-hover);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 700px) {
+    .form-container {
+        padding: 25px;
+    }
+
+    .form-action-row {
+        flex-direction: column;
+    }
+
+    .btn-submit-compact,
+    .btn-cancel {
+        width: 100%;
+    }
+}
+
+
+/* Form pengaduan siswa: layout, keterbacaan, dan responsif */
+.student-form-page {
+    width: min(100% - 36px, 900px);
+    margin: 34px auto 60px;
+}
+.student-page-nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 18px;
+}
+.student-page-nav .student-mini-nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 15px;
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    color: var(--teks-medium);
+    background: var(--bg-surface);
+    font-weight: 700;
+    transition: transform .2s, background .2s;
+}
+.student-page-nav .student-mini-nav img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+.student-page-nav .student-mini-nav:hover,
+.student-page-nav .student-mini-nav.active {
+    background: var(--brand);
+    color: #fff;
+    border-color: var(--brand);
+    transform: translateY(-1px);
+}
+.student-form-card {
+    width: 100%;
+    max-width: 100%;
+    padding: clamp(22px, 4vw, 42px);
+    border-top: 6px solid var(--brand);
+}
+.student-form-card.no-top-nav {
+    margin-top: 6px;
+}
+.form-heading {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+.form-eyebrow {
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--brand);
+}
+.form-heading h1 {
+    margin: 8px 0;
+    text-align: center;
+    color: var(--accent-text);
+    font-size: clamp(25px, 4vw, 34px);
+}
+.form-heading h1::after { content: none; }
+.form-heading p {
+    margin: 0;
+    text-align: center;
+    color: var(--teks-medium);
+    line-height: 1.6;
+}
+.student-form-card .form-group { margin-bottom: 22px; }
+.student-form-card label { margin-bottom: 9px; font-size: 15px; }
+.student-form-card label span { color: var(--brand); }
+.student-form-card input,
+.student-form-card select,
+.student-form-card textarea {
+    padding: 13px 15px;
+    border-radius: 11px;
+    background: var(--input-bg);
+}
+.student-form-card textarea { min-height: 130px; line-height: 1.55; }
+.field-hint {
+    display: block;
+    margin-top: 7px;
+    color: var(--teks-medium);
+    font-size: 12px;
+}
+.form-alert {
+    margin: 0 0 20px;
+    padding: 12px 15px;
+    border-radius: 10px;
+    background: var(--alert-warn-bg);
+    color: var(--alert-warn-text);
+    border: 1px solid var(--alert-warn-border);
+}
+
+/* Tombol ganti tema (ikon dari ASSETS/tema_terang.png & tema_gelap.png) */
+.theme-toggle {
+    border: 1px solid rgba(255, 255, 255, .4);
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    border-radius: 9px;
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.theme-toggle img {
+    width: 22px;
+    height: 22px;
+    display: block;
+    object-fit: contain;
+    /* Tombol selalu berada di navbar gelap, jadi ikon dipaksa putih
+       agar tetap terlihat baik ikon tema-terang maupun tema-gelap. */
+    filter: brightness(0) invert(1);
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, .22);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 620px) {
+    .student-form-page { width: min(100% - 22px, 900px); margin-top: 22px; }
+    .student-page-nav { justify-content: stretch; }
+    .student-page-nav .student-mini-nav { flex: 1; justify-content: center; padding: 10px 8px; }
+    .student-page-nav .student-mini-nav span { font-size: 13px; }
+    .student-form-card { padding: 22px 18px; }
+    .form-action-row { flex-direction: column; }
+    .form-action-row > * { width: 100%; }
+}

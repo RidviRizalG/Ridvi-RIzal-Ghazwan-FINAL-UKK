@@ -1,0 +1,534 @@
+/* ==========================================================================
+   08 - Responsif (HP/tablet) + hiasan tampilan
+   Dimuat PALING AKHIR di semua halaman, jadi menimpa aturan CSS sebelumnya
+   tanpa mengubah file 01-07. Semua hiasan memakai variabel tema sehingga
+   otomatis ikut tema terang / gelap.
+   ========================================================================== */
+
+:root {
+    --deco: 179, 37, 74;          /* warna hiasan (rgb) - tema terang */
+    --brand-deep: #8f1f3f;
+    --gold: #e8b64a;
+    --ease: cubic-bezier(.22, .8, .3, 1);
+}
+
+html[data-theme="dark"] {
+    --deco: 255, 157, 182;        /* warna hiasan (rgb) - tema gelap */
+    --brand-deep: #a8304f;
+}
+
+/* ---------- Dasar ---------------------------------------------------------- */
+html {
+    -webkit-text-size-adjust: 100%;
+    /* gradasi dipindah ke html agar hiasan di body::before bisa tampil di atasnya */
+    background: linear-gradient(135deg, var(--bg-page-1), var(--bg-page-2) 40%, var(--bg-page-3));
+}
+
+body {
+    background: transparent;
+    -webkit-tap-highlight-color: rgba(var(--deco), .18);
+}
+
+::selection { background: rgba(var(--deco), .28); }
+
+:focus-visible {
+    outline: 3px solid rgba(var(--deco), .55);
+    outline-offset: 2px;
+}
+
+/* scrollbar tipis berwarna brand */
+* { scrollbar-width: thin; scrollbar-color: rgba(var(--deco), .45) transparent; }
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-thumb { background: rgba(var(--deco), .4); border-radius: 9px; }
+
+/* ---------- Hiasan latar halaman ------------------------------------------ */
+/* Lapisan 1: cahaya lembut di pojok + pola titik */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(540px 540px at 100% 0%, rgba(var(--deco), .13), transparent 70%),
+        radial-gradient(480px 480px at 0% 100%, rgba(var(--deco), .11), transparent 70%),
+        url("../ASSETS/pola_sarpras_terang.svg") 0 0 / 420px auto;
+}
+
+html[data-theme="dark"] body::before {
+    background:
+        radial-gradient(540px 540px at 100% 0%, rgba(var(--deco), .13), transparent 70%),
+        radial-gradient(480px 480px at 0% 100%, rgba(var(--deco), .11), transparent 70%),
+        url("../ASSETS/pola_sarpras_gelap.svg") 0 0 / 420px auto;
+}
+
+/* panel sedikit tembus pandang supaya gambar latar tetap terlihat samar */
+@supports (background: color-mix(in srgb, red 50%, transparent)) {
+    .card,
+    .login-container,
+    .form-container,
+    .admin-nav {
+        background: color-mix(in srgb, var(--bg-surface) 92%, transparent);
+    }
+}
+
+/* Lapisan 2: gelombang di dasar layar */
+body::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 130px;
+    z-index: -1;
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160' preserveAspectRatio='none'%3E%3Cpath fill='%23b3254a' fill-opacity='.10' d='M0 92C240 152 480 22 720 72s480 78 720-12v100H0z'/%3E%3Cpath fill='%23b3254a' fill-opacity='.07' d='M0 118c260-60 520 30 780-6s440-40 660 14v34H0z'/%3E%3C/svg%3E") bottom / 100% 100% no-repeat;
+}
+
+html[data-theme="dark"] body::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 160' preserveAspectRatio='none'%3E%3Cpath fill='%23ff9db6' fill-opacity='.09' d='M0 92C240 152 480 22 720 72s480 78 720-12v100H0z'/%3E%3Cpath fill='%23ff9db6' fill-opacity='.06' d='M0 118c260-60 520 30 780-6s440-40 660 14v34H0z'/%3E%3C/svg%3E");
+}
+
+/* ---------- Navbar: pola diagonal + garis aksen emas ---------------------- */
+.navbar {
+    overflow: visible;
+}
+
+.navbar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 2px, transparent 2px 14px);
+}
+
+.navbar > * { position: relative; z-index: 1; }
+
+.navbar .logo,
+.login-brand-logo {
+    box-shadow: 0 0 0 3px rgba(255,255,255,.18);
+}
+
+/* ---------- Animasi masuk -------------------------------------------------- */
+@keyframes riseIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes drift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50%      { transform: translate(8px, -10px) rotate(8deg); }
+}
+
+.container > *,
+.student-form-page > * {
+    animation: riseIn .55s var(--ease) both;
+}
+.container > *:nth-child(2) { animation-delay: .08s; }
+.container > *:nth-child(3) { animation-delay: .16s; }
+.container > *:nth-child(4) { animation-delay: .24s; }
+
+/* ---------- Kartu ---------------------------------------------------------- */
+.card,
+.form-container,
+.login-container {
+    position: relative;
+}
+
+/* hiasan titik-titik di pojok kanan atas kartu */
+.card::after,
+.form-container::after,
+.login-container::after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 92px;
+    height: 56px;
+    pointer-events: none;
+    background: radial-gradient(rgba(var(--deco), .28) 1.5px, transparent 2px) 0 0 / 11px 11px;
+    -webkit-mask-image: linear-gradient(225deg, #000, transparent 75%);
+            mask-image: linear-gradient(225deg, #000, transparent 75%);
+}
+
+
+/* ---------- Hero dashboard ------------------------------------------------- */
+.dashboard-hero {
+    border-top: 6px solid var(--brand);
+}
+
+/* ikon gir (kiri atas) & gedung sekolah (kanan bawah) sebagai hiasan */
+.dashboard-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='%23b3254a' stroke-opacity='.20'%3E%3Ccircle cx='50' cy='50' r='34' stroke-width='12' stroke-dasharray='9 8.4'/%3E%3Ccircle cx='50' cy='50' r='27' stroke-width='5'/%3E%3Ccircle cx='50' cy='50' r='10' stroke-width='5'/%3E%3C/svg%3E") 5% 14% / 96px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='%23b3254a' stroke-opacity='.20' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M8 92V46L50 18l42 28v46z'/%3E%3Cpath d='M38 92V66h24v26'/%3E%3Cpath d='M50 18V6M50 6h14v8H50'/%3E%3Ccircle cx='50' cy='42' r='6'/%3E%3C/svg%3E") 95% 88% / 104px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='%23b3254a' stroke-opacity='.18' stroke-width='5' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M20 80l8-24L72 12l16 16-44 44z'/%3E%3Cpath d='M62 22l16 16M20 80l-4 8 8-4'/%3E%3C/svg%3E") 92% 10% / 64px no-repeat;
+    animation: drift 9s ease-in-out infinite;
+}
+
+html[data-theme="dark"] .dashboard-hero::after {
+    background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='%23ff9db6' stroke-opacity='.18'%3E%3Ccircle cx='50' cy='50' r='34' stroke-width='12' stroke-dasharray='9 8.4'/%3E%3Ccircle cx='50' cy='50' r='27' stroke-width='5'/%3E%3Ccircle cx='50' cy='50' r='10' stroke-width='5'/%3E%3C/svg%3E") 5% 14% / 96px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='%23ff9db6' stroke-opacity='.18' stroke-width='4' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M8 92V46L50 18l42 28v46z'/%3E%3Cpath d='M38 92V66h24v26'/%3E%3Cpath d='M50 18V6M50 6h14v8H50'/%3E%3Ccircle cx='50' cy='42' r='6'/%3E%3C/svg%3E") 95% 88% / 104px no-repeat,
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='%23ff9db6' stroke-opacity='.16' stroke-width='5' stroke-linejoin='round' stroke-linecap='round'%3E%3Cpath d='M20 80l8-24L72 12l16 16-44 44z'/%3E%3Cpath d='M62 22l16 16M20 80l-4 8 8-4'/%3E%3C/svg%3E") 92% 10% / 64px no-repeat;
+}
+
+/* logo hero: cincin berlapis */
+.dashboard-hero-logo {
+    box-shadow:
+        0 0 0 6px rgba(var(--deco), .14),
+        0 0 0 14px rgba(var(--deco), .07),
+        0 12px 26px var(--shadow-md);
+}
+
+
+/* ---------- Tombol navigasi dashboard ------------------------------------- */
+.dashboard-link {
+    position: relative;
+    overflow: hidden;
+    border-left: 5px solid var(--brand);
+    padding-right: 44px;
+}
+
+.dashboard-link::after {
+    content: "\203A";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-52%);
+    font-size: 30px;
+    line-height: 1;
+    color: var(--brand);
+    opacity: .45;
+    transition: transform .25s var(--ease), opacity .25s;
+}
+
+.dashboard-link:hover::after {
+    transform: translate(5px, -52%);
+    opacity: 1;
+}
+
+.dashboard-link img {
+    box-sizing: content-box;
+    width: 34px;
+    height: 34px;
+    padding: 9px;
+    border-radius: 50%;
+    background: rgba(var(--deco), .12);
+    flex-shrink: 0;
+}
+
+.student-dashboard-link img {
+    width: 38px;
+    height: 38px;
+}
+
+/* ---------- Tombol & badge ------------------------------------------------- */
+.login-btn,
+.button-submit,
+.btn-submit {
+    background: var(--brand);
+}
+
+.login-btn:hover,
+.button-submit:hover,
+.btn-submit:hover {
+    background: var(--brand-strong);
+}
+
+.badge::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    vertical-align: 1px;
+}
+
+.table tbody tr { transition: background .2s; }
+
+/* ---------- Login & registrasi -------------------------------------------- */
+.login-page-wrap,
+.main-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.login-page-wrap::before,
+.login-page-wrap::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    border: 2px dashed rgba(var(--deco), .28);
+    animation: drift 11s ease-in-out infinite;
+}
+.login-page-wrap::before { width: 220px; height: 220px; left: -70px; top: 8%; }
+.login-page-wrap::after  { width: 300px; height: 300px; right: -110px; bottom: 4%; animation-delay: -4s; }
+
+
+/* sub-judul bawaan h3 tidak dipakai di dalam hero */
+.dashboard-hero h3::after { content: none; }
+
+/* tombol hapus/edit pada tabel siswa */
+.table td a[title="Edit Siswa"],
+.table td a[title="Hapus Siswa"] { margin-right: 4px; }
+
+/* ==========================================================================
+   RESPONSIF
+   ========================================================================== */
+
+/* ---------- Tablet & HP: navbar ringkas ------------------------------------
+   Baris 1 : logo | judul (1 baris) | tombol tema | logout
+   Baris 2 : nama pengguna              (kelas / peran)                       */
+@media (max-width: 850px) {
+    .navbar {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+        align-items: center;
+        column-gap: 8px;
+        row-gap: 2px;
+        padding: 7px 12px 8px;
+        text-align: left;
+    }
+
+    /* .brand & .user-info "dilebur" supaya anak-anaknya ikut grid navbar */
+    .navbar .brand,
+    .user-info { display: contents; }
+
+    .navbar .logo { grid-column: 1; grid-row: 1; width: 32px; height: 32px; padding: 3px; }
+    .navbar .brand > span {
+        grid-column: 2;
+        grid-row: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .navbar .notif-wrap   { grid-column: 3; grid-row: 1; }
+    .navbar .theme-toggle { grid-column: 4; grid-row: 1; }
+    .navbar .btn-logout   { grid-column: 5; grid-row: 1; }
+
+    .theme-toggle,
+    .notif-toggle,
+    .btn-logout { width: 34px; height: 34px; padding: 6px; border-radius: 9px; }
+    .notif-toggle svg { width: 18px; height: 18px; }
+    .notif-panel {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        top: 58px;
+        width: auto;
+        max-height: 70vh;
+    }
+    .theme-toggle img { width: 18px; height: 18px; }
+    .btn-logout img   { width: 17px; height: 17px; }
+
+    .user-info .role-name {
+        grid-column: 1 / 3;
+        grid-row: 2;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 12px;
+        font-weight: 600;
+        opacity: .9;
+    }
+
+    .user-info small {
+        grid-column: 3 / 6;
+        grid-row: 2;
+        justify-self: end;
+        font-size: 11px;
+        opacity: .8;
+        white-space: nowrap;
+    }
+
+    /* halaman login & registrasi: tidak ada logout / nama */
+    .top-login-navbar { min-height: 0; }
+    .top-login-navbar .theme-toggle { grid-column: 4; }
+}
+
+/* ---------- Tabel -> kartu (<= 900px) -------------------------------------- */
+@media (max-width: 900px) {
+    .table-responsive { overflow: visible; }
+
+    .table,
+    .table tbody,
+    .table tr,
+    .table td { display: block; width: 100%; }
+
+    /* header disembunyikan secara visual, tetap terbaca oleh screen reader */
+    .table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+
+    .table tbody tr {
+        margin-bottom: 14px;
+        padding: 6px 16px;
+        background: var(--bg-surface-alt);
+        border: 1px solid var(--border);
+        border-left: 5px solid var(--brand);
+        border-radius: 14px;
+        box-shadow: 0 8px 18px var(--shadow-sm);
+    }
+
+    .table tbody tr:hover { background: var(--bg-surface-alt); }
+
+    .table td {
+        position: relative;
+        padding: 10px 0 10px 40%;
+        min-height: 40px;
+        border-bottom: 1px dashed var(--border);
+        overflow-wrap: anywhere;
+    }
+
+    .table td:last-child { border-bottom: 0; }
+
+    .table td[data-label]::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        top: 12px;
+        width: 36%;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: .05em;
+        text-transform: uppercase;
+        color: var(--teks-medium);
+    }
+
+    /* baris "data kosong" (tanpa data-label) */
+    .table td:not([data-label]) { padding: 18px 8px; text-align: center !important; }
+
+    .feedback-text { width: 100%; }
+
+    /* tombol aksi cukup besar untuk jari */
+    .table td[data-label="Aksi"] a {
+        width: 42px !important;
+        height: 42px !important;
+        border-radius: 10px !important;
+    }
+    .table td[data-label="Aksi"] a img { width: 22px !important; height: 22px !important; }
+}
+
+/* ---------- HP (<= 720px) --------------------------------------------------- */
+@media (max-width: 720px) {
+    .container {
+        margin: 16px auto 90px;
+        padding: 0 14px;
+    }
+
+    .card { padding: 18px 16px; border-radius: 16px; }
+
+    .card::after,
+    .form-container::after,
+    .login-container::after { width: 64px; height: 40px; top: 10px; right: 10px; }
+
+    h2 { font-size: 22px; margin-bottom: 18px; }
+    h3, .card h3 { font-size: 20px; margin-bottom: 16px; }
+    h3::after { font-size: 12px; }
+
+    /* 16px mencegah iOS memperbesar layar saat input difokuskan */
+    input, select, textarea { font-size: 16px; }
+    input { padding: 12px 13px; }
+
+    /* hero */
+    .dashboard-hero { padding: 26px 16px 24px; border-radius: 20px; margin-bottom: 18px; }
+    .dashboard-hero-content { gap: 12px; }
+    .dashboard-hero-logo { width: 74px; height: 74px; padding: 8px; }
+    .dashboard-hero h2 { font-size: 19px; }
+    .dashboard-hero h3 { font-size: 14px; font-weight: 600; margin: 0; color: var(--teks-medium); }
+    .dashboard-name { font-size: 19px; }
+    .student-welcome-text { font-size: 15px; }
+    .dashboard-hero::after { opacity: .45; background-size: 64px, 70px, 44px; }
+
+    /* kartu navigasi: 1 kolom */
+    .dashboard-nav-grid,
+    .dashboard-nav-grid.dashboard-nav-grid-3,
+    .student-dashboard-nav { grid-template-columns: 1fr; gap: 12px; margin-top: 14px; }
+
+    .dashboard-link { padding: 14px 44px 14px 16px; justify-content: flex-start; border-radius: 16px; }
+    .student-dashboard-link { min-height: 0; padding: 16px 44px 16px 16px; }
+    .student-link-title { font-size: 16px; }
+    .student-link-text small { font-size: 13px; }
+
+    /* navigasi admin & siswa: ikon dibagi rata selebar layar */
+    .admin-nav { padding: 10px; gap: 8px; border-radius: 14px; }
+    .admin-nav small { display: none; }
+    .admin-nav .menu { flex: 1 1 100%; flex-wrap: nowrap; gap: 8px; }
+    .admin-nav .menu a { flex: 1 1 0; width: auto; min-width: 0; height: 46px; }
+
+    .student-top-actions {
+        flex-wrap: nowrap;
+        gap: 8px;
+        justify-content: space-between !important;
+    }
+    .student-top-actions .student-mini-nav { flex: 1 1 0; width: auto; min-width: 0; height: 46px; }
+
+    /* form */
+    .login-page-wrap { padding: 22px 14px 90px; min-height: calc(100vh - 110px); align-items: flex-start; }
+    .login-container { padding: 26px 20px; width: 100%; }
+    .main-container { padding: 22px 14px 90px; }
+    .form-container { padding: 24px 18px; }
+    .student-form-page { margin: 18px auto 90px; }
+
+    .form-action-row { flex-direction: column-reverse; }
+    .btn-cancel { min-height: 46px; }
+    .login-btn, .button-submit, .btn-submit { min-height: 48px; }
+
+    /* tombol Simpan / Batal pada form tambah siswa */
+    form[action*="aksi=tambah"] .btn-submit,
+    form[action*="aksi=tambah"] a.btn-logout { width: 100% !important; height: 46px !important; }
+    form[method="GET"] .btn-submit { min-width: 52px; }
+
+    /* pencarian siswa */
+    form input[name="siswa_keyword"] { max-width: none !important; flex: 1 1 100%; }
+
+    /* detail */
+    .detail-section { padding: 14px; }
+
+    /* paginasi */
+    .pagination { justify-content: center; }
+    .pagination .btn-logout {
+        min-width: 40px;
+        min-height: 40px;
+        padding: 0 14px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    body::after { height: 70px; }
+}
+
+/* ---------- HP kecil (<= 380px) -------------------------------------------- */
+@media (max-width: 380px) {
+    .navbar .brand { font-size: 13.5px; }
+    .container { padding: 0 10px; }
+    .table td { padding-left: 42%; }
+    .table td[data-label]::before { width: 38%; font-size: 10.5px; }
+}
+
+/* ---------- Hormati pengaturan "kurangi gerakan" -------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
