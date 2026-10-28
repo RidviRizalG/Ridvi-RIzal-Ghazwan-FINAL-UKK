@@ -1,0 +1,57 @@
+DATA AKUN SISWA
+NIS | NAMA | PASSWORD
+200 | Ridvi Rizal Ghazwan | ridvi0505
+201 | Killua Zoldyck | siswa1234
+202 | Allen Haelwol | siswa4321
+203 | Cain Von Silford | pass203
+204 | Kaoruko Waguri | pass204
+205 | Marin Kitagawa | pass205
+206 | Dion Pratama | pass206
+207 | Erika Putri | pass207
+208 | Farma De Medicis | pass208
+209 | Gilang Ramadhan | pass209
+210 | Hani Puspita | pass210
+211 | Irfan Syahputra | pass211
+212 | Jessica Mila | pass212
+213 | Kevin Sanjaya | pass213
+214 | Larasati Putri | pass214
+215 | Muhammad Rizky | pass215
+216 | Nadia Vega | pass216
+217 | Oky Setiana | pass217
+218 | Panji Petualang | pass218
+219 | Qabil Hidayat | pass219
+221 | Muhammad Khairul Zimam Raqilla | zimam1902
+222 | Rafiif Alfiansyah | rafiif2403
+223 | Azka Gumilar | azka0812
+225 | martin lucien everett | lucienna
+226 | Zahra Safitri | Zahrasafitri1111
+917 | Genyas | 1234
+12345 | suci | 12345
+3194686 | KInar Ayu Naditya | kinarpahri
+15484646 | SUCI OKTA | SUCIOKTA0110
+566084339 | nehaanjay | sByYiRnUzB3m9Zq
+2026440594 | ellen baik hati | ellenbaik
+
+DATA AKUN ADMIN
+USERNAME | NAMA | PASSWORD
+admin1 | Lugh Tuatha De, S.Kom | admin54321
+admin2 | Van Nei Fertio, A.Md | admin12345
+admin_budi | Budi Santoso, S.T. | pass103_budi
+admin_siti | Siti Rahmawati, S.Pd | pass104_siti
+admin_ahmad | Ahmad Dahlan, M.T. | pass105_ahmad
+admin_dewi | Dewi Lestari, S.Kom | pass106_dewi
+admin_eko | Eko Prasetyo, A.Md | pass107_eko
+admin_fajar | Fajar Nugraha, S.T. | pass108_fajar
+admin_gita | Gita Gutawa, S.Pd | pass109_gita
+admin_hendra | Hendra Wijaya, S.T. | pass110_hendra
+admin_indah | Indah Permata, A.Md | pass111_indah
+admin_joko | Joko Susilo, S.Kom | pass112_joko
+admin_kartika | Kartika Putri, S.Pd | pass113_kartika
+admin_lukman | Lukman Hakim, M.Pd | pass114_lukman
+admin_maya | Maya Soraya, A.Md | pass115_maya
+admin_naufal | Naufal Rizky, S.T. | pass116_naufal
+admin_olivia | Olivia Zalianty, S.Kom | pass117_olivia
+admin_putra | Putra Utama, S.T. | pass118_putra
+admin_qori | Qori Sandioriva, S.Pd | pass119_qori
+admin_rizky | Rizky Febian, A.Md | pass120_rizky
+admin_ridvi | Ridvi Rizal Ghazwan, S.Ars | ridvi0505
