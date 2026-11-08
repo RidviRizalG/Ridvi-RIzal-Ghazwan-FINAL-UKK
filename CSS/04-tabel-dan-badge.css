@@ -1,0 +1,64 @@
+.table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: var(--teks);
+}
+
+.table th,
+.table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+}
+
+.table th {
+    background: var(--table-header-bg);
+    color: var(--teks-medium);
+}
+
+.table tr:hover {
+    background: var(--table-hover);
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.badge-menunggu {
+    background: #ffeeba;
+    color: #856404;
+}
+
+.badge-proses {
+    background: #b8daff;
+    color: #004085;
+}
+
+.badge-selesai {
+    background: #c3e6cb;
+    color: #155724;
+}
+
+.status-select {
+    width: auto;
+    min-width: 120px;
+    margin-bottom: 6px;
+}
+
+.feedback-text {
+    width: 180px;
+    min-height: 45px;
+    margin-bottom: 6px;
+}

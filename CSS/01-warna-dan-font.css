@@ -1,0 +1,131 @@
+:root {
+    /* Warna aksen brand (dipakai konsisten di kedua tema) */
+    --brand: #b3254a;
+    --brand-strong: #7f1a35;
+    --brand-soft: #f6dbe4;
+    --accent-text: #9c1f3f;
+    --putih: #ffffff;
+
+    /* Latar belakang */
+    --bg-page-1: #fdf4f6;
+    --bg-page-2: #f8e6ec;
+    --bg-page-3: #fdf0f3;
+    --bg-surface: #ffffff;
+    --bg-surface-alt: #fdf1f5;
+    --bg-panel: #fbeaef;
+    --bg-input: #fffafb;
+
+    /* Garis & bayangan */
+    --border: #f1d3dc;
+    --border-strong: #e6b7c4;
+    --shadow-sm: rgba(128, 0, 0, 0.06);
+    --shadow-md: rgba(128, 0, 0, 0.12);
+    --shadow-lg: rgba(128, 0, 0, 0.22);
+
+    /* Teks */
+    --teks: #2b141c;
+    --teks-medium: #6f4a56;
+    --teks-gelap: #7f1a35;
+    --teks-on-brand: #ffffff;
+
+    /* Navbar utama: selalu gelap di kedua tema (warna identitas aplikasi) */
+    --navbar-1: #74172f;
+    --navbar-2: #8f2340;
+
+    /* Elemen bantu */
+    --table-hover: #fbe9ef;
+    --table-header-bg: #fbeaef;
+    --input-bg: var(--bg-input);
+    --cancel-bg: #fdeef2;
+    --cancel-bg-hover: #f8dde5;
+    --alert-warn-bg: #fff3d9;
+    --alert-warn-text: #7a4b00;
+    --alert-warn-border: #f0d29c;
+
+    /* Kompatibilitas nama variabel lama yang masih dipakai di beberapa tempat */
+    --merah-utama: var(--brand);
+    --merah-terang: #ff8fae;
+    --merah-sekunder: var(--accent-text);
+    --merah-pucat: var(--bg-panel);
+    --merah-muda: var(--bg-surface-alt);
+    --abu-cerah: var(--border-strong);
+    --shadow: var(--shadow-md);
+
+    /* Latar belakang lingkaran logo dashboard: putih di tema terang */
+    --logo-bg: #ffffff;
+}
+
+/* ====== TEMA GELAP ====== */
+html[data-theme="dark"] {
+    --navbar-1: #a94d67;
+    --navbar-2: #c46a83;
+    --brand: #cf4468;
+    --brand-strong: #ff9db6;
+    --brand-soft: #3a2129;
+    --accent-text: #ff9db6;
+    --putih: #ffffff;
+
+    --bg-page-1: #150a0e;
+    --bg-page-2: #221019;
+    --bg-page-3: #1a0c12;
+    --bg-surface: #221921;
+    --bg-surface-alt: #2a1f28;
+    --bg-panel: #2a1f28;
+    --bg-input: #2a1f28;
+
+    --border: #4a3540;
+    --border-strong: #5c4450;
+    --shadow-sm: rgba(0, 0, 0, 0.25);
+    --shadow-md: rgba(0, 0, 0, 0.4);
+    --shadow-lg: rgba(0, 0, 0, 0.55);
+
+    --teks: #f3e6eb;
+    --teks-medium: #cdb2bc;
+    --teks-gelap: #ff9db6;
+    --teks-on-brand: #ffffff;
+
+    --table-hover: #32242d;
+    --table-header-bg: #2a1f28;
+    --input-bg: var(--bg-input);
+    --cancel-bg: #2a1f28;
+    --cancel-bg-hover: #34252e;
+    --alert-warn-bg: #3a2c12;
+    --alert-warn-text: #f0c987;
+
+    /* Latar belakang lingkaran logo dashboard: maroon tua di tema gelap */
+    --logo-bg: #4A0E14;
+    --alert-warn-border: #5a441c;
+
+    --merah-utama: var(--brand);
+    --merah-terang: #ff9db6;
+    --merah-sekunder: var(--accent-text);
+    --merah-pucat: var(--bg-panel);
+    --merah-muda: var(--bg-surface-alt);
+    --abu-cerah: var(--border-strong);
+    --shadow: var(--shadow-md);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: var(--bg-page-3);
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--bg-page-1), var(--bg-page-2) 40%, var(--bg-page-3));
+    color: var(--teks);
+    min-height: 100vh;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+a {
+    text-decoration: none;
+}
