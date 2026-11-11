@@ -1,0 +1,256 @@
+.navbar {
+    background: linear-gradient(135deg, var(--navbar-1), var(--navbar-2));
+    color: #ffffff;
+    padding: 12px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 0;
+}
+
+.top-login-navbar {
+    justify-content: flex-start;
+    min-height: 68px;
+}
+
+.top-login-navbar .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.login-brand-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 4px;
+    object-fit: contain;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    object-fit: contain;
+    padding: 4px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.role-name,
+.user-info .role-name {
+    font-weight: 700;
+}
+
+.btn-logout {
+    background: #a02030;
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-logout:hover {
+    background: var(--brand);
+}
+
+.admin-nav {
+    background: var(--bg-surface-alt);
+    border-radius: 16px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    box-shadow: 0 10px 30px var(--shadow-sm);
+    border: 1px solid var(--border);
+    color: var(--teks-medium);
+}
+
+.admin-nav .menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.admin-nav .menu a {
+    text-decoration: none;
+    background: var(--bg-panel);
+    color: var(--teks-medium);
+    font-weight: 700;
+    padding: 10px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-strong);
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.admin-nav .menu a.active,
+.admin-nav .menu a:hover {
+    background: var(--brand);
+    color: #ffffff;
+    border-color: var(--brand);
+}
+
+.nav-icon {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    display: block;
+    flex-shrink: 0;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (max-width: 850px) {
+    .admin-nav {
+        flex-wrap: wrap;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .user-info {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Navbar maroon adaptif: teks dan kontrol tetap kontras di kedua tema */
+.navbar { color: #fff; }
+.navbar .brand, .navbar .user-info, .navbar .role-name,
+.navbar .user-info small { color: #fff; }
+.navbar .theme-toggle {
+    background: rgba(255,255,255,.16);
+    border-color: rgba(255,255,255,.55);
+}
+.navbar .theme-toggle:hover { background: rgba(255,255,255,.28); }
+
+/* ---------- Notifikasi siswa (lonceng di navbar) ---------- */
+.notif-wrap { position: relative; }
+.notif-toggle {
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, .55);
+    background: rgba(255, 255, 255, .16);
+    color: #fff;
+    border-radius: 9px;
+    width: 42px;
+    height: 42px;
+    padding: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.notif-toggle:hover { background: rgba(255, 255, 255, .26); transform: translateY(-1px); }
+.notif-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 19px;
+    height: 19px;
+    padding: 0 5px;
+    border-radius: 10px;
+    background: #e53935;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 19px;
+    text-align: center;
+    box-shadow: 0 0 0 2px var(--navbar-2);
+}
+.notif-badge[hidden], .notif-panel[hidden] { display: none; }
+.notif-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    width: 340px;
+    max-height: 440px;
+    overflow-y: auto;
+    background: var(--bg-surface);
+    color: var(--teks);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px var(--shadow-lg);
+    text-align: left;
+    white-space: normal;
+    z-index: 1100;
+}
+.notif-head {
+    padding: 12px 16px;
+    font-weight: 700;
+    color: var(--teks-gelap);
+    border-bottom: 1px solid var(--border);
+}
+.notif-empty { padding: 18px 16px; font-size: 14px; color: var(--teks-medium); }
+.notif-list { list-style: none; margin: 0; padding: 0; }
+.notif-list li + li { border-top: 1px solid var(--border); }
+.notif-item {
+    display: block;
+    padding: 12px 16px;
+    color: var(--teks);
+    text-decoration: none;
+    font-size: 13.5px;
+    line-height: 1.45;
+}
+.notif-item:hover { background: var(--table-hover); }
+.notif-item.is-new { background: var(--bg-panel); box-shadow: inset 3px 0 0 var(--brand); }
+.notif-text { display: block; }
+.notif-detail {
+    display: block;
+    margin-top: 6px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border);
+}
+.notif-detail:empty { display: none; }
+.notif-row { display: block; }
+.notif-row + .notif-row { margin-top: 4px; }
+.notif-row em { font-style: normal; font-weight: 700; color: var(--teks-gelap); }
+.notif-meta { display: block; margin-top: 4px; font-size: 12px; color: var(--teks-medium); }
